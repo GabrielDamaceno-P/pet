@@ -11,7 +11,7 @@
 
 <body>
 
-  <form>
+  <form method="post" action="cadastrar.php" enctype="multipart/form-data">
     <div class="container">
       <div class="cadastro-form">
         <fieldset>
@@ -19,12 +19,12 @@
           <p>
           <h2>Cadastro</h2>
           </p><!-- Esse é um titulo-->
-          <input type="text" placeholder="Nome"><br><br>
-          <input type="text" placeholder="Endereço">
-          <input type="tel" placeholder="(99)9999-9999">
-          <input type="email" placeholder="email" >
-          <input type="password" placeholder="senha" >
-          <input type="password" placeholder="Confirma senha" >
+          <input type="text" id="nome_usuario" name="nome_usuario" placeholder="Nome"><br><br>
+          <input type="text" id="endereco" name="endereco" placeholder="Endereço">
+          <input type="tel" id="telefone" name="telefone" placeholder="(99)9999-9999">
+          <input type="email" id="email" name="email" placeholder="email" >
+          <input type="password" id="senha" name="senha" placeholder="senha" >
+          <input type="password" id="senha" name="senha" placeholder="Confirma senha" >
         </fieldset>
         <br>
         <br>
