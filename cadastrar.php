@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display', 1);
 
-include 'conexao.php';
+include 'banco.php';
 require 'usuario.php';
 require 'pet.php';
 require 'service.php';
@@ -20,7 +20,7 @@ try{
 //Criação e salvamento do usuario
     $usuario = new Usuario(
         $conexao,
-        ($_POST['nome_usuario']),
+        ($_POST['nome']),
         ($_POST['endereco']),
         ($_POST['telefone']),
         ($_POST['email']),
