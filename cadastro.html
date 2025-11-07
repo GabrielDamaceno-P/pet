@@ -11,7 +11,7 @@
 
 <body>
 
-  <form method="post" action="cadastrar.php" enctype="multipart/form-data">
+  <form method="post" action="./cadastrar.php" enctype="multipart/form-data">
     <div class="container">
       <div class="cadastro-form">
         <fieldset>
@@ -38,22 +38,22 @@
             
           </p>
           <label>Nome do Pet:</label><br>
-          <input type="text" id="nome" name="nome"  placeholder="Nome do Pet"><br>
+          <input type="text" id="nome" name="pets[0][nome]"  placeholder="Nome do Pet"><br>
           <div id="pets-container"> 
             
             <div class="pet-block">
 
 
               <label>Sexo do Pet</label>
-              <label><input type="radio" id="macho" name="sexo" value="macho">Macho</label>
-              <label><input type="radio" id="femea" name="sexo" value="femea">Femea</label>
+              <label><input type="radio" id="macho" name="pets[0][sexo]" value="macho">Macho</label>
+              <label><input type="radio" id="femea" name="pets[0][sexo]" value="femea">Femea</label>
 
               <label>Porte do Pet</label>
-              <label><input type="radio" id="pequeno" name="porte" value="pequeno">Pequeno</label>
-              <label><input type="radio" id="medio" name="porte" value="medio">medio</label>
-              <label><input type="radio" id="grande" name="porte" value="medio">Grande</label>
+              <label><input type="radio" id="pequeno" name="pets[0][porte]" value="pequeno">Pequeno</label>
+              <label><input type="radio" id="medio" name="pets[0][porte]" value="medio">medio</label>
+              <label><input type="radio" id="grande" name="pets[0][porte]" value="medio">Grande</label>
 
-              <select id="raca">
+              <select id="pets[0][raca]">
                 <option value="" disabled selected hidden>Escreva a raça</option>
                 <option value="raca-do-amor">Raça do amor</option>
                 <option value="labrador">Labrador</option>
@@ -64,7 +64,7 @@
               <div id="pets"></div>
               <button type="submit">Cadastrar</button>
               <button type="reset">Limpar</button>
-              <button type="button " onclick="adicionarPet()">Adicionar PET</button>
+              <button type="button " onclick=adicionarPet()>Adicionar PET</button>
         
         
             </fieldset>

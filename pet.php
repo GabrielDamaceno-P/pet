@@ -8,7 +8,7 @@ class Pet{
     public $raca;
     public $porte;
     public $foto;
-    public function _construct($conn, $nome, $sexo, $raca, $porte, $usuario_id,$foto= null){
+    public function __construct($conn, $nome, $sexo, $porte, $raca, $usuario_id,$foto= null){
         $this->conn = $conn;
         $this->nome = $nome;
         $this->sexo = $sexo;
@@ -20,9 +20,9 @@ class Pet{
     public function salvar(){
         $sql = "INSERT INTO pet(nome, sexo, porte, raca, foto, usuario_id) VALUES (?,?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        if($stmt->execute([$this->nome, $this->sexo, $this->porte, $this->raca, $this->foto, $this->usuario-id])){
-            $this->usuario_id =$this->conn->lastInsertId();
-            return $this->usuario_id;
+        if($stmt->execute([$this->nome, $this->sexo, $this->porte, $this->raca, $this->foto, $this->usuario_id])){
+            $this->pet_id =$this->conn->lastInsertId();
+            return $this->pet_id;
         }else{
             throw new Exception("Erro em salvar pet. ");
         }

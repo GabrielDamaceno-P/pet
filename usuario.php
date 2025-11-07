@@ -10,7 +10,7 @@ class Usuario {
  public  $telefone;
  private $senhaHash;
 
- public function _construct($conn, $nome, $endereco, $telefone, $email, $senha){
+ public function __construct($conn, $nome, $endereco, $telefone, $email, $senha){
    $this->conn = $conn;
    $this->nome = trim($nome);
    $this->endereco = $endereco;
@@ -29,7 +29,7 @@ class Usuario {
  public function salvar(){
    $sql = "INSERT INTO usuarios(nome, email, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?)";
    $stmt = $this->conn->prepare($sql);
-   if($stmt->execute([$this->nome,$this->endereco, $this->telefone, $this->email, $this->senhaHash])){
+   if($stmt->execute([$this->nome,$this->email, $this->endereco, $this->telefone, $this->senhaHash])){
       $this->usuario_id = $this->conn->lastInsertId();
       return $this->usuario_id;
    }else{

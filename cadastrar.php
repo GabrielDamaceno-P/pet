@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display', 1);
+ini_set('display_errors', 1);
 
 include 'banco.php';
 require 'usuario.php';
@@ -15,11 +15,11 @@ if($_SERVER['REQUEST_METHOD']!=='POST'){
 try{
 
     if($_POST['senha']!==$_POST['confirmar_senha']){
-        throw new Exception("As senhas não coincidem");
+        throw new Exception("As senhas não coincidem");    
     }
 //Criação e salvamento do usuario
     $usuario = new Usuario(
-        $conexao,
+        $conn,
         ($_POST['nome']),
         ($_POST['endereco']),
         ($_POST['telefone']),
@@ -43,12 +43,12 @@ if(!empty($_POST['pets']) && is_array($_POST['pets'])){
      if(!$nome || !$sexo || !$porte || !$raca) continue;
      //Foto do Pet
      $foto = 'img/pet_padrao.jpg';
-     if(!empty($_FILES['pet_fotos']['name'][$i])&& $_FILES['pet_fotos']['error'][$i]=== UPLOAD_ERR_OK){
+     if(!empty($_FILES['pet_fotos']['nome'][$i])&& $_FILES['pet_fotos']['error'][$i]=== UPLOAD_ERR_OK){
         $foto = $uploadService->salvarFoto($_FILES['pet_fotos'], $i) ?: $foto;
       }
       //Criar e Salvar o pet
       try{
-        $novoPet = new Pet($conexao, $nome, $porte, $raca, $usuarioId, $foto);
+        $novoPet = new Pet($conn, $nome, $sexo, $porte, $raca, $usuarioId, $foto);
         if($novoPet->salvar());
       }catch(Exception $e){
         echo "Erro ao cadastrar pet". $e->getMessage();
