@@ -21,8 +21,8 @@ class Pet{
         $sql = "INSERT INTO pet(nome, sexo, porte, raca, foto, usuario_id) VALUES (?,?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
         if($stmt->execute([$this->nome, $this->sexo, $this->porte, $this->raca, $this->foto, $this->usuario_id])){
-            $this->pet_id =$this->conn->lastInsertId();
-            return $this->pet_id;
+            $this->usuario_id =$this->conn->lastInsertId();
+            return $this->usuario_id;
         }else{
             throw new Exception("Erro em salvar pet. ");
         }

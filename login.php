@@ -1,11 +1,11 @@
 <?php
 session_start();
-include 'banco.php';
+include 'conexao2.php';
 class UserAuthenticator{
     private $conexao;
 
     public function __construct($conexao){
-        $this=>conexao = $conexao;
+        $this->conexao = $conexao;
     }
     public function authenticate ($username, $password){
         $stmt = $this->conexao->prepare("SELECT usuario_id, senha FROM usuarios WHERE nome =?");
@@ -38,5 +38,25 @@ class UserAuthenticator{
 if($_SERVER["REQUEST_METHOD"]==="POST"){
     $nome = $_POST["nome"] ?? '';
     $senha = $_POST["senha"] ?? '';
+    $authenticator = new UserAuthenticator($conexao);
+
+    if($authenticator->userExists($nome)){
+        $userId = $authenticator->authenticate($nome,$senha);
+
+        if($userId){
+            $_SESSION['id_usuario'] = $userId;
+            $_SESSION['nome'] = $nome;
+
+            header("Location: verifica_cliente.php");
+            exit;
+        }else{
+            echo "senha incorreta. <a href='index.html' > tente novamente <\a>.";
+        }
+    }else{
+        echo "<img src='img/img.png' alt='você não esta cadastrado, favor registra-se'>";
+    }
+}else{
+    echo "servidor não envio via POST";
+    var_dump($_SERVER["REQUEST_METHOD"]);
 }
 ?>
